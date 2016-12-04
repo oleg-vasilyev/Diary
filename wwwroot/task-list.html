@@ -1,0 +1,47 @@
+<div class="task-list">
+
+  <div class="task-list_swipe-area demo-swipe" md-swipe-left="onSwipeLeft()" md-swipe-right="onSwipeRight()"></div>
+
+  <table>
+    <tbody>
+      <tr ng-repeat="task in tasks">
+        <td class="task-list_note" ng-init="isEditTaskClicked = false; editTaskNoteModel = task.note;">
+          <p ng-show="!isEditTaskClicked" ng-click="isEditTaskClicked = true" ng-class="{'task-list_task-completed': task.isDone}">{{task.note}}</p>
+          <md-input-container ng-show="isEditTaskClicked" md-no-float="" class="md-float md-block task-list_edit-task-input">
+            <label>Изменить запись</label>
+            <input type="text" ng-model="editTaskNoteModel" ng-keypress="($event.which === 13) ? [updateTaskNote(task.id, editTaskNoteModel), isEditTaskClicked = false] : 0">
+          </md-input-container>
+        </td>
+        <td colspan="2" ng-show="isEditTaskClicked">
+          <md-button class="md-fab md-primary task-list_save-button" ng-click="isEditTaskClicked = false; updateTaskNote(task.id, editTaskNoteModel);">
+            <md-icon class="material-icons md-24">save</md-icon>
+          </md-button>
+        </td>
+        <td ng-show="!isEditTaskClicked">
+          <md-checkbox type="checkbox" ng-model="task.isDone" ng-change="markTask(task.id, task.isDone)" class="md-primary task-list_checkbox"
+            aria-label="is done"></md-checkbox>
+        </td>
+        <td ng-show="!isEditTaskClicked">
+          <md-button class="md-fab md-mini md-primary" ng-click="removeTask(task.id)">
+            <md-icon class="material-icons md-24">delete</md-icon>
+          </md-button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <md-input-container class="md-icon-float md-block">
+            <label>Новая запись</label>
+            <md-icon class="material-icons md-24">event_note</md-icon>
+            <input ng-model="addTaskNoteModel" type="text" autofocus="autofocus" ng-keypress="($event.which === 13) ? addTask(selectedDate, addTaskNoteModel) : 0">
+          </md-input-container>
+        </td>
+        <td colspan="2">
+          <md-button ng-click="addTask(selectedDate, addTaskNoteModel)" class="md-raised md-primary task-list_add-button">
+            Добавить
+          </md-button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

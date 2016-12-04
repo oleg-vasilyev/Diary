@@ -1,0 +1,50 @@
+<div class="calendar">
+    <md-button ng-click="isCalendarOpen = !isCalendarOpen" class="md-primary md-raised calendar_open-calendar-button">
+        <md-icon ng-show="!isCalendarOpen" class="material-icons">date_range</md-icon>
+        {{selectedDateAsLine}}
+    </md-button>
+    <div class="calendar_calendar-collapsable" ng-class="{ expanded: isCalendarOpen }">
+        <md-toolbar class="calendar_month-top">
+            <div class="calendar_prev">
+                <md-button class="md-fab md-primary" ng-click="toPrevMonthClick()">
+                    <md-icon class="material-icons md-24">keyboard_arrow_left</md-icon>
+                </md-button>
+            </div>
+            <div class="calendar_today" ng-click="toThisDayClick()">
+                {{monthOfSelectedDate}}
+                <span style="font-size:18px">{{yearOfSelectedDate}}</span>
+
+            </div>
+            <div class="calendar_next">
+                <md-button class="md-fab md-primary" ng-click="toNextMonthClick()">
+                    <md-icon class="material-icons md-24">keyboard_arrow_right</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <div class="calendar_month-down">
+            <table>
+                <thead>
+                    <tr class="calendar_days-title-container">
+                        <th ng-repeat="dayOfTheWeek in daysOfTheWeek">
+                            <div class="calendar_day-of-week">
+                                {{dayOfTheWeek}}
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="calendar_days-container" ng-repeat="calendarDays in calendar">
+                        <td ng-repeat="calendarDay in calendarDays" class="calendar_day">
+                            <md-button ng-click="dayClick(calendarDay.dayOfMonth, calendarDay.isDayInSelectedMonth)" ng-class="{'md-primary md-raised': calendarDay.isDayInSelectedMonth &&
+                                                        calendarDay.dayOfMonth == dayOfSelectedDate}" ng-disabled='!calendarDay.isDayInSelectedMonth'>
+                                {{calendarDay.dayOfMonth}}
+                            </md-button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
