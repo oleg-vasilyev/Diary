@@ -1,0 +1,8 @@
+<div class="cmp__dropbox">
+	<button ng-click="openDialogue()">
+		<img src="wwwroot\cmp__upload_files\file.png" alt="file">
+		<span>{{selectFileText}}</span>
+	</button>
+	<span>{{dropboxText}}</span>
+	<input type="file" cmp__input_file="checkSelectedFiles(files)" multiple accept={{mask}}>
+</div>

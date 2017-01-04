@@ -1,7 +1,12 @@
 /*jshint esversion: 6 */
-(function() { 'use strict'; }());
+(function () { 'use strict'; } ());
 
 angular.module('dairyApp').
     component('dairy', {
-        templateUrl: 'wwwroot/dairy.html'
-      });
+        templateUrl: 'wwwroot/dairy.html',
+        controller: ($scope) => {
+            $scope.logFiles = (files) => {
+                console.log(files);
+            }
+        }
+    });

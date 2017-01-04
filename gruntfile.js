@@ -107,7 +107,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('default', ['less', 'watch']);
-    grunt.registerTask('rel', ['less', 'autoprefixer', 'cssmin']);
+  grunt.registerTask('rel', ['less', 'autoprefixer', 'cssmin']);
 
 };
 
